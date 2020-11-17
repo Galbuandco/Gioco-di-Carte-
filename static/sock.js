@@ -1,6 +1,6 @@
 var partita = localStorage.getItem("id");
 var giocatore = localStorage.getItem("giocatore");
-var socket = io.connect("http://151.21.175.6:3000");
+var socket = io.connect("127.0.0.1:3000");
 var iter=0,puntate=[];
 
 //dom elements
@@ -64,11 +64,13 @@ function punto_su(arg){
 
 socket.on("punteggio",(risultato)=>{
     console.log(risultato);
-    if(giocatore=="g1"){
-        document.getElementById("tuoi").innerHTML=risultato[0];
-        document.getElementById("suoi").innerHTML=risultato[1];
-    }else{
+    //if(giocatore=="g1"){
+        document.getElementById("suoi").innerHTML=document.getElementById("suoi").innerHTML+risultato;
+        //document.getElementById("suoi").innerHTML=risultato[1];
+  /*   }else{
         document.getElementById("tuoi").innerHTML=risultato[1];
         document.getElementById("suoi").innerHTML=risultato[0];
-    }
+    } */
 })
+
+prossima.addEventListener("click",()=>{location.reload();return false;})
